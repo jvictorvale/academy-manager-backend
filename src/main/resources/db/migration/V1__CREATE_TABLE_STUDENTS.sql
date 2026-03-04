@@ -1,10 +1,11 @@
 CREATE TABLE students (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITHOUT TIME ZONE,
     name VARCHAR(100) NOT NULL,
     age INTEGER,
     belt VARCHAR(50),
     weight NUMERIC(5, 2),
-    height NUMERIC(3, 2)
+    height NUMERIC(3, 2),
+    is_active BOOLEAN NOT NULL DEFAULT TRUE
 );

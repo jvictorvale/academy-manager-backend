@@ -1,4 +1,4 @@
-package br.com.jvictorvale.exception;
+package br.com.victorvale.academymanagerbackend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
