@@ -38,4 +38,16 @@ O projeto possui um pipeline automatizado configurado no `.github/workflows`. O 
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/academy-manager-backend.git](https://github.com/seu-usuario/academy-manager-backend.git)
+   git clone https://github.com/seu-usuario/academy-manager-backend.git
+   
+2. Configure as variáveis de ambiente no seu sistema ou no application.yml:
+
+- `SPRING_DATASOURCE_URL` (ex: jdbc:postgresql://localhost:5432/academy_db)
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+- `API_SECURITY_TOKEN_SECRET`
+
+3. Acesse a documentação do Swagger em: http://localhost:8080/swagger-ui/index.html
+
+🔮 Próximos Passos
+Desenvolvimento do Front-end para consumo da API.
