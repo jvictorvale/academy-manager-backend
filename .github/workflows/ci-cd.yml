@@ -36,3 +36,6 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/academy-manager-backend:latest
           ${{ secrets.DOCKER_USERNAME }}/academy-manager-backend:${{ github.run_id }}
+
+    - name: 6. Avisando o Render para atualizar a API
+      run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
