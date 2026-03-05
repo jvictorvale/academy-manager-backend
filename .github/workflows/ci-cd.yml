@@ -33,4 +33,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/academy-manager-backend:latest/academy-manager-backend:${{ github.run_id }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/academy-manager-backend:latest/academy-manager-backend:${{ github.run_id }}
