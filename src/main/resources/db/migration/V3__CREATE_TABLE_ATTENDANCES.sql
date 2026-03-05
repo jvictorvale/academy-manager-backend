@@ -1,0 +1,9 @@
+CREATE TABLE attendances (
+    id BIGSERIAL PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    class_date DATE NOT NULL,
+    check_in_time TIMESTAMP NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+)

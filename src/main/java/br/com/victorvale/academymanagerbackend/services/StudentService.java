@@ -61,4 +61,12 @@ public class StudentService {
         student.setActive(false);
         studentRepository.save(student);
     }
+
+    public void Activate(Long id){
+        var student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id));
+
+        student.setActive(true);
+        studentRepository.save(student);
+    }
 }

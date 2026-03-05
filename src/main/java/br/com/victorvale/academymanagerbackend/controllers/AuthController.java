@@ -4,6 +4,8 @@ import br.com.victorvale.academymanagerbackend.dto.security.AccountCredentialsDT
 import br.com.victorvale.academymanagerbackend.dto.security.TokenDTO;
 import br.com.victorvale.academymanagerbackend.services.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +23,28 @@ public class AuthController {
     }
 
     @PostMapping(value = "/createUser")
-    @Operation(summary = "Creates a new user", description = "Registers a new user with encrypted password in the database")
+    @Operation(summary = "Creates a new user", description = "Registers a new user with encrypted password in the database",
+            responses = {
+                    @ApiResponse(description = "Created", responseCode = "201", content = @Content),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Conflict", responseCode = "409", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            }
+    )
     public ResponseEntity<AccountCredentialsDTO> create(@RequestBody AccountCredentialsDTO data) {
         var createdUser = authService.create(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @PostMapping(value = "/signin")
-    @Operation(summary = "Authenticates a user", description = "Authenticates a user and returns a JWT token")
+    @Operation(summary = "Authenticates a user", description = "Authenticates a user and returns a JWT token",
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = @Content),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            }
+    )
     public ResponseEntity<TokenDTO> signin(@RequestBody AccountCredentialsDTO data) {
         if (data == null || data.getLogin() == null || data.getLogin().isBlank()
                 || data.getPassword() == null || data.getPassword().isBlank()) {
@@ -44,7 +60,14 @@ public class AuthController {
     }
 
     @PutMapping(value = "/refresh/{login}")
-    @Operation(summary = "Refreshes token", description = "Refreshes an expired JWT token using the refresh token")
+    @Operation(summary = "Refreshes token", description = "Refreshes an expired JWT token using the refresh token",
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = @Content),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            }
+    )
     public ResponseEntity<TokenDTO> refreshToken(@PathVariable("login") String login,
                                                  @RequestHeader("Authorization") String refreshToken) {
 
